@@ -3,9 +3,10 @@
         var lang = {
             name : "ru",
             description : "Простой онлайн редактор markdown.",
+            tocTitle    : "Содержание",
             toolbar : {
-                undo             : "Undo(Ctrl+Z)",
-                redo             : "Redo(Ctrl+Y)",
+                undo             : "Отмена(Ctrl+Z)",
+                redo             : "Повтор(Ctrl+Y)",
                 bold             : "Жирный",
                 del              : "Зачёркнутый",
                 italic           : "Наклонный",
@@ -31,12 +32,14 @@
                 table            : "Таблицы",
                 datetime         : "Дата/Время",
                 emoji            : "Эиодзи",
-                htmlEntities     : "Спец. символы",
+                "html-entities"  : "Спец. символы",
+                pagebreak        : "Page break",
                 watch            : "Unwatch",
                 unwatch          : "Watch",
                 preview          : "Предпросмотр (ESC для выхода)",
                 fullscreen       : "Полноэкранный режим (ESC для выхода)",
                 clear            : "Очистка",
+                search           : "Search",
                 help             : "Помощь",
                 info             : "О программе " + exports.title
             },
@@ -52,10 +55,11 @@
                     urlTitle : "Заголовок",
                     urlEmpty : "Ошибка: Пожалуйста, укажите URL для ссылки."
                 },
-                anchor : {
-                    title    : "Ссылка на якорь",
+                referenceLink : {
+                    title    : "Ссылка",
                     name     : "Название",
                     url      : "URL",
+                    urlId    : "ID",
                     urlTitle : "Заголовок",
                     nameEmpty: "Ошибка: якорь не должен быть пустым.",
                     titleEmpty : "Ошибка: якорь должен биметь название.",
