@@ -2,7 +2,7 @@
 <html lang="zh">
     <head>
         <meta charset="utf-8" />
-        <title>Simple - Editor.md examples</title>
+        <title>Simple example - Editor.md examples</title>
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="../css/editormd.css" />
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
@@ -10,31 +10,34 @@
     <body>
         <div id="layout">
             <header>
-                <h1>简单示例</h1>
+                <h1>Simple example</h1>
             </header>
             <div id="test-editormd">
-                <textarea style="display:none;">###Hello world!
+                <textarea style="display:none;">[TOC]
 
-本示例未开启：
+#### Disabled options
 
-- TeX(基于KaTeX)；
-- 智能识别和解析HTML标签；
-- 流程图和时序/序列图支持;
+- TeX (Based on KaTeX);
+- Emoji;
+- Task lists;
+- HTML tags decode;
+- Flowchart and Sequence Diagram;
 
-###Editor.md目录结构
+#### Editor.md directory
 
     editor.md/
+            lib/
             css/
+            scss/
+            tests/
             fonts/
-            docs/
             images/
             plugins/
-            scss/
-            lib/
-            tests/
             examples/
+            languages/
             editormd.js
             ...
+
 </textarea>
             </div>
         </div>
@@ -45,10 +48,20 @@
 
             $(function() {
                 testEditor = editormd("test-editormd", {
-                    width: "90%",
-                    height: 640,
-                    path : '../lib/'
+                    width   : "90%",
+                    height  : 640,
+                    path    : "../lib/"
                 });
+                
+                /*
+                // or
+                testEditor = editormd({
+                    id      : "test-editormd",
+                    width   : "90%",
+                    height  : 640,
+                    path    : "../lib/"
+                });
+                */
             });
         </script>
     </body>
