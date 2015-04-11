@@ -47,7 +47,7 @@
     };
     
     editormd.title        = editormd.$name = "Editor.md";
-    editormd.version      = "1.4.0";
+    editormd.version      = "1.4.1";
     editormd.homePage     = "https://pandao.github.io/editor.md/";
     editormd.classPrefix  = "editormd-";
     
@@ -95,6 +95,7 @@
         autoHeight           : false,
         autoCloseTags        : true,
         searchReplace        : true,
+        syncScrolling        : true,
         readOnly             : false,
         lineNumbers          : true,
         matchWordHighlight   : true,           // options: true, false, "onselected"
@@ -1396,7 +1397,7 @@
             
             this.previewContainer.find("." + editormd.classNames.tex).each(function(){
                 var tex  = $(this);
-                editormd.$katex.render(tex.html(), tex[0]);
+                editormd.$katex.render(tex.text(), tex[0]);
             });   
 
             return this;
@@ -1524,6 +1525,10 @@
             var settings         = this.settings;
             var codeMirror       = this.codeMirror;
             var mouseOrTouch     = editormd.mouseOrTouch;
+            
+            if (!settings.syncScrolling) {
+                return this;
+            }
                 
             var cmBindScroll = function() {    
                 codeMirror.find(".CodeMirror-scroll").bind(mouseOrTouch("scroll", "touchmove"), function(event) {
@@ -1604,6 +1609,10 @@
             var _this            = this;
             var cm               = this.cm;
             var settings         = this.settings;
+            
+            if (!settings.syncScrolling) {
+                return this;
+            }
             
             cm.on("change", function(_cm, changeObj) {
                 
@@ -1860,7 +1869,7 @@
             
             if (settings.saveHTMLToTextarea) 
             {
-                this.htmlTextarea.html(newMarkdownDoc);
+                this.htmlTextarea.val(newMarkdownDoc);
             }
             
             if(settings.watch || (!settings.watch && state.preview))
@@ -3116,19 +3125,19 @@
         editormdLogo  : /:(editormd-logo-?(\w+)?):/g,
         pageBreak     : /^\[[=]{8,}\]$/
     };
-    
+
     // Emoji graphics files url path
     editormd.emoji     = {
         path  : "http://www.emoji-cheat-sheet.com/graphics/emojis/",
         ext   : ".png"
     };
-    
+
     // Twitter Emoji (Twemoji)  graphics files url path    
     editormd.twemoji = {
         path : "http://twemoji.maxcdn.com/36x36/",
         ext  : ".png"
     };
-    
+
     /**
      * 自定义marked的解析器
      * Custom Marked renderer rules
@@ -3136,7 +3145,7 @@
      * @param   {Array}    markdownToC     传入用于接收TOC的数组
      * @returns {Renderer} markedRenderer  返回marked的Renderer自定义对象
      */
-    
+
     editormd.markedRenderer = function(markdownToC, options) {
         var defaults = {
             toc                  : true,           // Table of contents
@@ -3831,8 +3840,8 @@
     // 使用国外的CDN，加载速度有时会很慢，或者自定义URL
     // You can custom KaTeX load url.
     editormd.katexURL  = {
-        css : "//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min",
-        js  : "//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min"
+        css : "//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min",
+        js  : "//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min"
     };
     
     editormd.kaTeXLoaded = false;
